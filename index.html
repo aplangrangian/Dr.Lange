@@ -18,7 +18,8 @@
         #cloudChamber {
             position: fixed;
             inset: 0;
-            z-index: -1;
+            z-index: 0; /* important: NOT negative, does not block mouse events */
+            pointer-events: none; /* ensures mouse input ALWAYS passes through */
             background: radial-gradient(circle at top, #141a33 0, #050713 60%);
         }
 
@@ -27,23 +28,26 @@
             padding: 3rem 1rem;
             background: rgba(17, 20, 38, 0.95);
             backdrop-filter: blur(4px);
+            position: relative;
+            z-index: 10;
         }
+
         h1 {
             margin: 0;
             font-size: 2.5rem;
         }
+
         nav {
             margin-top: 1rem;
         }
+
         nav a {
             color: #66ccff;
             margin: 0 1rem;
             text-decoration: none;
             font-size: 1.1rem;
         }
-        nav a:hover {
-            text-decoration: underline;
-        }
+        nav a:hover { text-decoration: underline; }
 
         .section {
             max-width: 900px;
@@ -52,7 +56,21 @@
             background: rgba(21, 25, 46, 0.9);
             border-radius: 12px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 10;
         }
+
+        .center-image {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        .center-image img {
+            max-width: 80%;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,150,255,0.3);
+        }
+
         h2 {
             border-bottom: 1px solid #333;
             padding-bottom: 0.5rem;
@@ -64,19 +82,26 @@
             font-size: 0.9rem;
             color: #999;
             background: rgba(10, 12, 25, 0.95);
+            position: relative;
+            z-index: 10;
         }
-
-        a {
-            color: #66ccff;
-        }
+        
+        a { color: #66ccff; }
     </style>
 </head>
 <body>
+
     <!-- Cloud chamber background -->
     <canvas id="cloudChamber"></canvas>
 
     <header>
         <h1>Alexander Lange</h1>
+
+        <!-- ⭐ NEW IMAGE #1 under the title -->
+        <div class="center-image">
+            <img src="Images/header_image.png" alt="Header graphic">
+        </div>
+
         <nav>
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
@@ -89,25 +114,36 @@
         <h2>About Me</h2>
         <p>
             Welcome! I'm an astrophysicist and a data scientist focused on astrophysics, data analysis,
-            and building tools for high-energy astronomy and beyond. On this page, you'll find information about me and my doctoral research, code snippets and interesting visualizations I've created along my journey. Any and all data/code is available upon request.
+            and building tools for high-energy astronomy and beyond.
         </p>
         <p>
-            I am currently focused on high-energy astrophysical phenomena as it pertains to compact objects (black holes, neutron stars, etc.). These classically "hard-to-detect" systems have been found to be observed in the X-rays and gamma-rays if certain conditions are met, namely: the presence of a binary companion and its interaction with the compact objects (accretion, stellar wind, etc.).
+            I focus on high-energy astrophysical phenomena related to compact objects. 
         </p>
-        <p>
-            I've written and contributed to multiple peer-reviewed publications which can be found below:
-        </p>
+        <p>Peer-reviewed publications:</p>
         <ul style="list-style:none;padding-left:0;">
             <li style="margin:8px 0;padding:8px;border-left:3px solid #00aaff;">
-                <a href="https://iopscience.iop.org/article/10.3847/1538-4357/adda32" target="_blank">Orbital Phase-resolved Analysis of X-Ray and Gamma-Ray Observations of the High-mass Gamma-Ray Binary 4FGL J1405.1‑6119e</a>
+                <a href="https://iopscience.iop.org/article/10.3847/1538-4357/adda32" target="_blank">
+                    Orbital Phase-resolved Analysis of 4FGL J1405.1-6119
+                </a>
             </li>
+
             <li style="margin:8px 0;padding:8px;border-left:3px solid #00aaff;">
-                <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ade713" target="_blank">The Vela Pulsar and Its Pulsar Wind Nebula Vela-X Using 13 Yr of Fermi-LAT Observationse</a>
+                <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ade713" target="_blank">
+                    The Vela Pulsar and Vela-X Using 13 Yr of Fermi-LAT
+                </a>
             </li>
+
             <li style="margin:8px 0;padding:8px;border-left:3px solid #00aaff;">
-                <a href="https://arxiv.org/abs/2511.04810" target="_blank">FermiPhased: A tool for phase-resolved likelihood analysis of Fermi-LAT data</a>
+                <a href="https://arxiv.org/abs/2511.04810" target="_blank">
+                    FermiPhased: A tool for phase-resolved Fermi-LAT analysis
+                </a>
             </li>
         </ul>
+    </div>
+
+    <!-- ⭐ NEW IMAGE #2 between About Me and Projects -->
+    <div class="center-image">
+        <img src="Images/middle_image.png" alt="Middle graphic">
     </div>
 
     <div id="projects" class="section">
@@ -121,8 +157,14 @@
     <div id="graphics" class="section">
         <h2>Research Visualizations</h2>
         <p>Interactive graphics and animated figures from my astrophysics research.</p>
-        <div class="graphic-container" style="height:300px;background:#0e1125;border-radius:12px;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 1s;">
-            <img src="Images/test.png" alt="Research Figure" style="max-width:90%;max-height:90%;border-radius:10px;box-shadow:0 0 20px rgba(0,150,255,0.3);" />
+
+        <div class="graphic-container" 
+             style="height:300px;background:#0e1125;border-radius:12px;
+                    display:flex;align-items:center;justify-content:center;
+                    opacity:0;transition:opacity 1s;">
+            <img src="Images/test.png" alt="Research Figure" 
+                 style="max-width:90%;max-height:90%;border-radius:10px;
+                        box-shadow:0 0 20px rgba(0,150,255,0.3);" />
         </div>
     </div>
 
@@ -134,80 +176,86 @@
         </p>
     </div>
 
-    <footer>
-        © 2025 Alexander Lange
-    </footer>
+    <footer>© 2025 Alexander Lange</footer>
+
 
 <script>
-    // Cloud chamber background
-    const canvas = document.getElementById('cloudChamber');
-    const ctx = canvas.getContext('2d', { alpha: true });
+/* CLOUD CHAMBER — FIXED + OPTIMIZED */
+const canvas = document.getElementById("cloudChamber");
+const ctx = canvas.getContext("2d");
 
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
-    let particles = [];
+let particles = [];
 
-    window.addEventListener('mousemove', (e) => {
-        // Cursor coordinates now match canvas coordinates EXACTLY
-        for (let i = 0; i < 1; i++) {
-            const angle = Math.random() * Math.PI * 2;
-            const speed = 0.5 + Math.random() * 1.5;
-
-            particles.push({
-                x: e.clientX,
-                y: e.clientY,
-                vx: Math.cos(angle) * speed,
-                vy: Math.sin(angle) * speed,
-                life: 1,
-                width: 0.8 + Math.random() * 1.7,
-                length: 20 + Math.random() * 60
-            });
-        }
-    });
-
-    function animateChamber() {
-        requestAnimationFrame(animateChamber);
-
-        ctx.fillStyle = 'rgba(5, 7, 19, 0.25)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        particles = particles.filter(p => p.life > 0);
-
-        particles.forEach(p => {
-            p.x += p.vx;
-            p.y += p.vy;
-            p.life -= 0.02;
-
-            ctx.save();
-            ctx.globalAlpha = p.life/2;
-
-            const gradient = ctx.createLinearGradient(
-                p.x, p.y,
-                p.x - p.vx * p.length,
-                p.y - p.vy * p.length
-            );
-            gradient.addColorStop(0, 'rgba(160,220,255,1)');
-            gradient.addColorStop(1, 'rgba(0,80,180,0)');
-
-            ctx.strokeStyle = gradient;
-            ctx.lineWidth = p.width;
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(
-                p.x - p.vx * p.length,
-                p.y - p.vy * p.length
-            );
-            ctx.stroke();
-            ctx.restore();
+window.addEventListener("mousemove", (e) => {
+    for (let i = 0; i < 1; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 0.5 + Math.random() * 1.5;
+        particles.push({
+            x: e.clientX,
+            y: e.clientY,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            life: 1,
+            width: 1 + Math.random() * 1.5,
+            length: 25 + Math.random() * 50
         });
     }
+});
 
-    animateChamber();
+function animate() {
+    requestAnimationFrame(animate);
+
+    ctx.fillStyle = "rgba(5,7,19,0.22)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    particles = particles.filter(p => p.life > 0);
+
+    particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= 0.02;
+
+        ctx.save();
+        ctx.globalAlpha = p.life * 0.6;
+
+        const g = ctx.createLinearGradient(
+            p.x, p.y,
+            p.x - p.vx * p.length,
+            p.y - p.vy * p.length
+        );
+        g.addColorStop(0, "rgba(160,220,255,1)");
+        g.addColorStop(1, "rgba(0,80,180,0)");
+
+        ctx.strokeStyle = g;
+        ctx.lineWidth = p.width;
+
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(
+            p.x - p.vx * p.length,
+            p.y - p.vy * p.length
+        );
+        ctx.stroke();
+        ctx.restore();
+    });
+}
+
+animate();
+
+/* IMAGE FADE-IN */
+const graphic = document.querySelector(".graphic-container");
+window.addEventListener("scroll", () => {
+    const rect = graphic.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.8)
+        graphic.style.opacity = 1;
+});
 </script>
 
 </body>
