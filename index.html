@@ -154,7 +154,7 @@
 
     window.addEventListener('mousemove', (e) => {
         // Cursor coordinates now match canvas coordinates EXACTLY
-        for (let i = 0; i < 2; i++) {
+        for (let i = 0; i < 1; i++) {
             const angle = Math.random() * Math.PI * 2;
             const speed = 0.5 + Math.random() * 1.5;
 
@@ -184,7 +184,7 @@
             p.life -= 0.02;
 
             ctx.save();
-            ctx.globalAlpha = p.life;
+            ctx.globalAlpha = p.life/2;
 
             const gradient = ctx.createLinearGradient(
                 p.x, p.y,
