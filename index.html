@@ -99,13 +99,13 @@
         </p>
         <ul style="list-style:none;padding-left:0;">
             <li style="margin:8px 0;padding:8px;border-left:3px solid #00aaff;">
-                <hl>https://orcid.org/signin</hl>Fermi-phased analysis pipeline
+                <a href="https://iopscience.iop.org/article/10.3847/1538-4357/adda32" target="_blank">Orbital Phase-resolved Analysis of X-Ray and Gamma-Ray Observations of the High-mass Gamma-Ray Binary 4FGL J1405.1‑6119e</a>
             </li>
             <li style="margin:8px 0;padding:8px;border-left:3px solid #00aaff;">
-                Dynamic Lomb-Scargle visualization tools
+                <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ade713" target="_blank">The Vela Pulsar and Its Pulsar Wind Nebula Vela-X Using 13 Yr of Fermi-LAT Observationse</a>
             </li>
             <li style="margin:8px 0;padding:8px;border-left:3px solid #00aaff;">
-                Multi-wavelength astrophysics scripts
+                <a href="https://arxiv.org/abs/2511.04810" target="_blank">FermiPhased: A tool for phase-resolved likelihood analysis of Fermi-LAT data</a>
             </li>
         </ul>
     </div>
@@ -154,7 +154,7 @@
 
     window.addEventListener('mousemove', (e) => {
         // Cursor coordinates now match canvas coordinates EXACTLY
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 2; i++) {
             const angle = Math.random() * Math.PI * 2;
             const speed = 0.5 + Math.random() * 1.5;
 
@@ -181,7 +181,7 @@
         particles.forEach(p => {
             p.x += p.vx;
             p.y += p.vy;
-            p.life -= 0.01;
+            p.life -= 0.02;
 
             ctx.save();
             ctx.globalAlpha = p.life;
