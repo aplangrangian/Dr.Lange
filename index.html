@@ -99,7 +99,7 @@
         </p>
         <ul style="list-style:none;padding-left:0;">
             <li style="margin:8px 0;padding:8px;border-left:3px solid #00aaff;">
-                Fermi-phased analysis pipeline
+                <hl>https://orcid.org/signin</hl>Fermi-phased analysis pipeline
             </li>
             <li style="margin:8px 0;padding:8px;border-left:3px solid #00aaff;">
                 Dynamic Lomb-Scargle visualization tools
@@ -138,88 +138,77 @@
         © 2025 Alexander Lange
     </footer>
 
-    <script>
-        // Cloud chamber background
-        const canvas = document.getElementById('cloudChamber');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
+<script>
+    // Cloud chamber background
+    const canvas = document.getElementById('cloudChamber');
+    const ctx = canvas.getContext('2d', { alpha: true });
 
-        function resizeCanvas() {
-            const dpr = window.devicePixelRatio || 1;
-            canvas.width = window.innerWidth * dpr;
-            canvas.height = window.innerHeight * dpr;
-            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        }
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+    let particles = [];
 
-        window.addEventListener('mousemove', (e) => {
-            // Spawn a few "tracks" near the cursor
-            for (let i = 0; i < 4; i++) {
-                const angle = Math.random() * Math.PI * 2;
-                const speed = 0.5 + Math.random() * 1.5;
-                particles.push({
-                    x: e.clientX,
-                    y: e.clientY,
-                    vx: Math.cos(angle) * speed,
-                    vy: Math.sin(angle) * speed,
-                    life: 1,
-                    width: 0.8 + Math.random() * 1.7,
-                    length: 20 + Math.random() * 60
-                });
-            }
-        });
+    window.addEventListener('mousemove', (e) => {
+        // Cursor coordinates now match canvas coordinates EXACTLY
+        for (let i = 0; i < 4; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = 0.5 + Math.random() * 1.5;
 
-        function animateChamber() {
-            requestAnimationFrame(animateChamber);
-
-            // Slight fade to create trails
-            ctx.fillStyle = 'rgba(5, 7, 19, 0.25)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            particles = particles.filter(p => p.life > 0);
-
-            particles.forEach(p => {
-                p.x += p.vx;
-                p.y += p.vy;
-                p.life -= 0.01;
-
-                ctx.save();
-                ctx.globalAlpha = p.life;
-
-                // Glowy track
-                const gradient = ctx.createLinearGradient(
-                    p.x, p.y,
-                    p.x - p.vx * p.length,
-                    p.y - p.vy * p.length
-                );
-                gradient.addColorStop(0, 'rgba(160, 220, 255, 1)');
-                gradient.addColorStop(1, 'rgba(0, 80, 180, 0)');
-
-                ctx.strokeStyle = gradient;
-                ctx.lineWidth = p.width;
-                ctx.beginPath();
-                ctx.moveTo(p.x, p.y);
-                ctx.lineTo(
-                    p.x - p.vx * p.length,
-                    p.y - p.vy * p.length
-                );
-                ctx.stroke();
-                ctx.restore();
+            particles.push({
+                x: e.clientX,
+                y: e.clientY,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                life: 1,
+                width: 0.8 + Math.random() * 1.7,
+                length: 20 + Math.random() * 60
             });
         }
+    });
 
-        animateChamber();
+    function animateChamber() {
+        requestAnimationFrame(animateChamber);
 
-        // Fade-in for research graphic
-        const graphic = document.querySelector('.graphic-container');
-        window.addEventListener('scroll', () => {
-            const rect = graphic.getBoundingClientRect();
-            if (rect.top < window.innerHeight * 0.8) {
-                graphic.style.opacity = 1;
-            }
+        ctx.fillStyle = 'rgba(5, 7, 19, 0.25)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        particles = particles.filter(p => p.life > 0);
+
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.life -= 0.01;
+
+            ctx.save();
+            ctx.globalAlpha = p.life;
+
+            const gradient = ctx.createLinearGradient(
+                p.x, p.y,
+                p.x - p.vx * p.length,
+                p.y - p.vy * p.length
+            );
+            gradient.addColorStop(0, 'rgba(160,220,255,1)');
+            gradient.addColorStop(1, 'rgba(0,80,180,0)');
+
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = p.width;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(
+                p.x - p.vx * p.length,
+                p.y - p.vy * p.length
+            );
+            ctx.stroke();
+            ctx.restore();
         });
-    </script>
+    }
+
+    animateChamber();
+</script>
+
 </body>
 </html>
