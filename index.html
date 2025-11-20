@@ -14,12 +14,11 @@
             position: relative;
         }
 
-        /* Cloud chamber canvas */
         #cloudChamber {
             position: fixed;
             inset: 0;
-            z-index: 0; /* important: NOT negative, does not block mouse events */
-            pointer-events: none; /* ensures mouse input ALWAYS passes through */
+            z-index: 0;
+            pointer-events: none;
             background: radial-gradient(circle at top, #141a33 0, #050713 60%);
         }
 
@@ -32,15 +31,9 @@
             z-index: 10;
         }
 
-        h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
+        h1 { margin: 0; font-size: 2.5rem; }
 
-        nav {
-            margin-top: 1rem;
-        }
-
+        nav { margin-top: 1rem; }
         nav a {
             color: #66ccff;
             margin: 0 1rem;
@@ -55,7 +48,7 @@
             padding: 1rem 2rem;
             background: rgba(21, 25, 46, 0.9);
             border-radius: 12px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 30px rgba(0,0,0,0.4);
             position: relative;
             z-index: 10;
         }
@@ -80,184 +73,209 @@
         footer {
             text-align: center;
             padding: 2rem;
-            font-size: 0.9rem;
             color: #999;
-            background: rgba(10, 12, 25, 0.95);
-            position: relative;
+            background: rgba(10,12,25,0.95);
             z-index: 10;
+            position: relative;
         }
-        
+
         a { color: #66ccff; }
+
+        /* --- ANALYZE FEATURE --- */
+        .analyze-box {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        #analysisImage {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,150,255,0.3);
+            transition: opacity 1s;
+        }
+
+        #analyzeButton {
+            margin-top: 1rem;
+            padding: 10px 18px;
+            font-size: 1.1rem;
+            background: #00aaff;
+            color: black;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        #analyzeButton:hover {
+            background: #33cfff;
+        }
+
+        #loadingBar {
+            width: 0%;
+            height: 12px;
+            background: #00aaff;
+            margin: 12px auto;
+            border-radius: 10px;
+            transition: width 3s linear;
+            box-shadow: 0 0 10px rgba(0,150,255,0.6);
+        }
     </style>
 </head>
 <body>
 
-    <!-- Cloud chamber background -->
-    <canvas id="cloudChamber"></canvas>
+<canvas id="cloudChamber"></canvas>
 
-    <header>
-        <h1>Alexander Lange</h1>
+<header>
+    <h1>Alexander Lange</h1>
 
-        <!-- ⭐ NEW IMAGE #1 under the title -->
-        <div class="center-image">
-            <img src="Images/DIAS_Talk.png" alt="Header graphic">
-        </div>
-
-        <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#graphics">Research Visualizations</a>
-            <a href="#contact">Contact</a>
-            <a href="CV_Lange.pdf" target="_blank">CV</a>
-            <a href="Resume_Lange.pdf" target="_blank">Résumé</a>
-        </nav>
-    </header>
-
-    <div id="about" class="section">
-        <h2>About Me</h2>
-        <p>
-            Welcome! I'm an astrophysicist and a data scientist focused on astrophysics, data analysis,
-            and building tools for high-energy astronomy and beyond.
-        </p>
-        <p>
-            I focus on high-energy astrophysical phenomena related to compact objects. 
-        </p>
-        <p>Peer-reviewed publications:</p>
-        <ul style="list-style:none;padding-left:0;">
-            <li style="margin:8px 0;padding:8px;border-left:3px solid #00aaff;">
-                <a href="https://iopscience.iop.org/article/10.3847/1538-4357/adda32" target="_blank">
-                    Orbital Phase-resolved Analysis of 4FGL J1405.1-6119
-                </a>
-            </li>
-
-            <li style="margin:8px 0;padding:8px;border-left:3px solid #00aaff;">
-                <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ade713" target="_blank">
-                    The Vela Pulsar and Vela-X Using 13 Yr of Fermi-LAT
-                </a>
-            </li>
-
-            <li style="margin:8px 0;padding:8px;border-left:3px solid #00aaff;">
-                <a href="https://arxiv.org/abs/2511.04810" target="_blank">
-                    FermiPhased: A tool for phase-resolved Fermi-LAT analysis
-                </a>
-            </li>
-        </ul>
-    </div>
-
-    <!-- ⭐ NEW IMAGE #2 between About Me and Projects -->
     <div class="center-image">
-        <img src="Images/middle_image.png" alt="Middle graphic">
+        <img src="Images/DIAS_Talk.png" alt="Header graphic">
     </div>
 
-    <div id="projects" class="section">
-        <h2>Projects</h2>
-        <ul>
-            <li>Fermi-phased analysis pipeline</li>
-            <li>Multi-wavelength astrophysics scripts</li>
-        </ul>
-    </div>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#graphics">Research Visualizations</a>
+        <a href="#contact">Contact</a>
+        <a href="CV_Lange.pdf" target="_blank">CV</a>
+        <a href="Resume_Lange.pdf" target="_blank">Résumé</a>
+    </nav>
+</header>
 
-    <div id="graphics" class="section">
-        <h2>Research Visualizations</h2>
-        <p>Interactive graphics and animated figures from my astrophysics research.</p>
+<div id="about" class="section">
+    <h2>About Me</h2>
+    <p>Welcome! I'm an astrophysicist and data scientist focused on high-energy astrophysics.</p>
 
-        <div class="graphic-container" 
-             style="height:300px;background:#0e1125;border-radius:12px;
-                    display:flex;align-items:center;justify-content:center;
-                    opacity:0;transition:opacity 1s;">
-            <img src="Images/test.png" alt="Research Figure" 
-                 style="max-width:90%;max-height:90%;border-radius:10px;
-                        box-shadow:0 0 20px rgba(0,150,255,0.3);" />
+    <ul style="list-style:none;padding-left:0;">
+        <li style="margin:8px;padding:8px;border-left:3px solid #00aaff;">
+            <a href="https://iopscience.iop.org/article/10.3847/1538-4357/adda32" target="_blank">
+            Orbital Phase-resolved Analysis of 4FGL J1405.1-6119
+            </a>
+        </li>
+        <li style="margin:8px;padding:8px;border-left:3px solid #00aaff;">
+            <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ade713" target="_blank">
+            The Vela Pulsar and Vela-X
+            </a>
+        </li>
+        <li style="margin:8px;padding:8px;border-left:3px solid #00aaff;">
+            <a href="https://arxiv.org/abs/2511.04810" target="_blank">
+            FermiPhased Tool for LAT Analysis
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="center-image">
+    <img src="Images/middle_image.png" alt="Middle graphic">
+</div>
+
+<div id="projects" class="section">
+    <h2>Projects</h2>
+    <ul>
+        <li>Fermi-phased analysis pipeline</li>
+        <li>Multi-wavelength astrophysics scripts</li>
+    </ul>
+</div>
+
+<!-- ⭐ RESEARCH VISUALIZATION WITH ANALYZE BUTTON -->
+<div id="graphics" class="section">
+    <h2>Research Visualizations</h2>
+    <p>Click “Analyze” to simulate phase-resolved data processing.</p>
+
+    <div class="analyze-box">
+        <img id="analysisImage" src="Images/test.png" alt="Initial Visualization">
+
+        <button id="analyzeButton">Analyze</button>
+
+        <div id="loadingBarContainer" style="width:60%;margin:auto;display:none;">
+            <div id="loadingBar"></div>
         </div>
     </div>
+</div>
 
-    <div id="contact" class="section">
-        <h2>Contact</h2>
-        <p>
-            GitHub: <a href="https://github.com/aplangrangian">@aplangrangian</a><br>
-            Email: <a href="mailto:alexlange@gwu.edu">alexlange@gwu.edu</a>
-        </p>
-    </div>
+<div id="contact" class="section">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:alexlange@gwu.edu">alexlange@gwu.edu</a><br>
+       GitHub: <a href="https://github.com/aplangrangian">@aplangrangian</a></p>
+</div>
 
-    <footer>© 2025 Alexander Lange</footer>
-
+<footer>© 2025 Alexander Lange</footer>
 
 <script>
-/* CLOUD CHAMBER — FIXED + OPTIMIZED */
+/* CLOUD CHAMBER */
 const canvas = document.getElementById("cloudChamber");
 const ctx = canvas.getContext("2d");
-
 function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
 }
 resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
+addEventListener("resize", resizeCanvas);
 
 let particles = [];
-
-window.addEventListener("mousemove", (e) => {
+addEventListener("mousemove", e => {
     for (let i = 0; i < 1; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = 0.5 + Math.random() * 1.5;
+        const angle = Math.random()*Math.PI*2;
+        const speed = 0.5 + Math.random()*1.5;
         particles.push({
-            x: e.clientX,
-            y: e.clientY,
-            vx: Math.cos(angle) * speed,
-            vy: Math.sin(angle) * speed,
-            life: 1,
-            width: 1 + Math.random() * 1.5,
-            length: 25 + Math.random() * 50
+            x: e.clientX, y: e.clientY,
+            vx: Math.cos(angle)*speed,
+            vy: Math.sin(angle)*speed,
+            life: 1, width: 1+Math.random()*1.5,
+            length: 20+Math.random()*50
         });
     }
 });
 
 function animate() {
     requestAnimationFrame(animate);
+    ctx.fillStyle="rgba(5,7,19,0.22)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
 
-    ctx.fillStyle = "rgba(5,7,19,0.22)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    particles = particles.filter(p => p.life > 0);
-
+    particles = particles.filter(p=>p.life>0);
     particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.life -= 0.02;
-
+        p.x+=p.vx; p.y+=p.vy; p.life-=0.02;
         ctx.save();
-        ctx.globalAlpha = p.life * 0.6;
-
-        const g = ctx.createLinearGradient(
-            p.x, p.y,
-            p.x - p.vx * p.length,
-            p.y - p.vy * p.length
-        );
-        g.addColorStop(0, "rgba(160,220,255,1)");
-        g.addColorStop(1, "rgba(0,80,180,0)");
-
-        ctx.strokeStyle = g;
-        ctx.lineWidth = p.width;
-
+        ctx.globalAlpha=p.life*0.6;
+        let g=ctx.createLinearGradient(p.x,p.y,p.x-p.vx*p.length,p.y-p.vy*p.length);
+        g.addColorStop(0,"rgba(160,220,255,1)");
+        g.addColorStop(1,"rgba(0,80,180,0)");
+        ctx.strokeStyle=g;
+        ctx.lineWidth=p.width;
         ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(
-            p.x - p.vx * p.length,
-            p.y - p.vy * p.length
-        );
+        ctx.moveTo(p.x,p.y);
+        ctx.lineTo(p.x-p.vx*p.length,p.y-p.vy*p.length);
         ctx.stroke();
         ctx.restore();
     });
 }
-
 animate();
 
-/* IMAGE FADE-IN */
-const graphic = document.querySelector(".graphic-container");
-window.addEventListener("scroll", () => {
-    const rect = graphic.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.8)
-        graphic.style.opacity = 1;
+/* --- ANALYZE BUTTON LOGIC --- */
+const analysisImage = document.getElementById("analysisImage");
+const analyzeBtn = document.getElementById("analyzeButton");
+const loadingContainer = document.getElementById("loadingBarContainer");
+const loadingBar = document.getElementById("loadingBar");
+
+analyzeBtn.addEventListener("click", () => {
+    analyzeBtn.style.display = "none";
+    loadingContainer.style.display = "block";
+
+    // Trigger loading animation
+    setTimeout(() => loadingBar.style.width = "100%", 50);
+
+    // After 3 seconds → swap image
+    setTimeout(() => {
+        analysisImage.style.opacity = 0;
+
+        setTimeout(() => {
+            analysisImage.src = "Images/test2.png";  // ⭐ Replace with second image
+            analysisImage.style.opacity = 1;
+        }, 700);
+
+        loadingContainer.style.display = "none";
+    }, 3000);
 });
 </script>
 
