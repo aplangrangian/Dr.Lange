@@ -293,7 +293,7 @@ function runAnalysis() {
 
             // If more steps remain
             if (currentStep < frames.length - 1) {
-                analyzeButton.textContent = "Analyze Again";
+                analyzeButton.textContent = "Continue";
                 analyzeButton.style.display = "inline-block";
             } else {
                 // Final step – show RESET button
@@ -301,7 +301,7 @@ function runAnalysis() {
                 analyzeButton.style.display = "inline-block";
             }
         }, 600);
-    }, 3000);  // 3-second analysis animation
+    }, 1500);  // 3-second analysis animation
 }
 
 // Reset everything
