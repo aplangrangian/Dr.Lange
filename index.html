@@ -184,7 +184,7 @@
     <p>Click “Analyze” to simulate phase-resolved data processing.</p>
 
     <div class="analyze-box">
-        <img id="analysisImage" src="Images/test.png" alt="Initial Visualization">
+        <img id="analysisImage" src="Images/Animation_fig_1" alt="Initial Visualization">
 
         <button id="analyzeButton">Analyze</button>
 
@@ -270,7 +270,21 @@ analyzeBtn.addEventListener("click", () => {
         analysisImage.style.opacity = 0;
 
         setTimeout(() => {
-            analysisImage.src = "Images/test2.png";  // ⭐ Replace with second image
+            analysisImage.src = "Images/Animation_fig_2.png";  // ⭐ Replace with second image
+            analysisImage.style.opacity = 1;
+        }, 700);
+
+        loadingContainer.style.display = "none";
+    }, 3000);
+
+        setTimeout(() => loadingBar.style.width = "100%", 50);
+
+    // After 3 seconds → swap image
+    setTimeout(() => {
+        analysisImage.style.opacity = 0;
+
+        setTimeout(() => {
+            analysisImage.src = "Images/Animation_fig_3.png";  // ⭐ Replace with second image
             analysisImage.style.opacity = 1;
         }, 700);
 
