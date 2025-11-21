@@ -253,43 +253,77 @@ function animate() {
 animate();
 
 /* --- ANALYZE BUTTON LOGIC --- */
+
+// Image frames in order
+const frames = [
+    "Images/Animation_fig_1.png",  // original
+    "Images/Animation_fig_2.png",  // after analysis 1
+    "Images/Animation_fig_3.png",  // after analysis 2
+];
+
+let currentStep = 0;
+
 const analysisImage = document.getElementById("analysisImage");
-const analyzeBtn = document.getElementById("analyzeButton");
-const loadingContainer = document.getElementById("loadingBarContainer");
+const analyzeButton = document.getElementById("analyzeButton");
+const loadingBarContainer = document.getElementById("loadingBarContainer");
 const loadingBar = document.getElementById("loadingBar");
 
-analyzeBtn.addEventListener("click", () => {
-    analyzeBtn.style.display = "none";
-    loadingContainer.style.display = "block";
+// Run a single analysis step
+function runAnalysis() {
+    analyzeButton.style.display = "none";
+    loadingBarContainer.style.display = "block";
+    loadingBar.style.width = "0%";
 
-    // Trigger loading animation
-    setTimeout(() => loadingBar.style.width = "100%", 50);
+    // Start loading bar animation
+    setTimeout(() => (loadingBar.style.width = "100%"), 50);
 
-    // After 3 seconds → swap image
     setTimeout(() => {
+        // Fade out old frame
         analysisImage.style.opacity = 0;
 
         setTimeout(() => {
-            analysisImage.src = "Images/Animation_fig_2.png";  // ⭐ Replace with second image
+            currentStep++;
+
+            // Update image
+            analysisImage.src = frames[currentStep];
             analysisImage.style.opacity = 1;
-        }, 700);
 
-        loadingContainer.style.display = "none";
-    }, 3000);
+            // Hide loading bar
+            loadingBarContainer.style.display = "none";
 
-    setTimeout(() => loadingBar.style.width = "100%", 50);
+            // If more steps remain
+            if (currentStep < frames.length - 1) {
+                analyzeButton.textContent = "Analyze Again";
+                analyzeButton.style.display = "inline-block";
+            } else {
+                // Final step – show RESET button
+                analyzeButton.textContent = "Reset";
+                analyzeButton.style.display = "inline-block";
+            }
+        }, 600);
+    }, 3000);  // 3-second analysis animation
+}
 
-    // After 3 seconds → swap image
+// Reset everything
+function resetAnalysis() {
+    currentStep = 0;
+    analysisImage.style.opacity = 0;
+
     setTimeout(() => {
-        analysisImage.style.opacity = 0;
+        analysisImage.src = frames[0];
+        analysisImage.style.opacity = 1;
+    }, 400);
 
-        setTimeout(() => {
-            analysisImage.src = "Images/Animation_fig_3.png";  // ⭐ Replace with second image
-            analysisImage.style.opacity = 1;
-        }, 700);
+    analyzeButton.textContent = "Analyze";
+}
 
-        loadingContainer.style.display = "none";
-    }, 3000);
+// Button behavior
+analyzeButton.addEventListener("click", () => {
+    if (analyzeButton.textContent === "Reset") {
+        resetAnalysis();
+    } else {
+        runAnalysis();
+    }
 });
 </script>
 
