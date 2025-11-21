@@ -1,175 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alexander Lange</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #050713;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        #cloudChamber {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at top, #141a33 0, #050713 60%);
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: rgba(17, 20, 38, 0.95);
+            backdrop-filter: blur(4px);
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 { margin: 0; font-size: 2.5rem; }
+
+        nav { margin-top: 1rem; }
+        nav a {
+            color: #66ccff;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+        nav a:hover { text-decoration: underline; }
+
+        .section {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 1rem 2rem;
+            background: rgba(21, 25, 46, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 10;
+        }
+
+        .center-image {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        .center-image img {
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,150,255,0.3);
+        }
+
+        h2 {
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #999;
+            background: rgba(10,12,25,0.95);
+            z-index: 10;
+            position: relative;
+        }
+
+        a { color: #66ccff; }
+
+        /* --- ANALYZE FEATURE --- */
+        .analyze-box {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        #analysisImage {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,150,255,0.3);
+            transition: opacity 1s;
+        }
+
+        #analyzeButton {
+            margin-top: 1rem;
+            padding: 10px 18px;
+            font-size: 1.1rem;
+            background: #00aaff;
+            color: black;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        #analyzeButton:hover {
+            background: #33cfff;
+        }
+
+        #loadingBar {
+            width: 0%;
+            height: 12px;
+            background: #00aaff;
+            margin: 12px auto;
+            border-radius: 10px;
+            transition: width 3s linear;
+            box-shadow: 0 0 10px rgba(0,150,255,0.6);
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="cloudChamber"></canvas>
+
+<header>
+    <h1>Alexander Lange</h1>
+
+    <div class="center-image">
+        <img src="Images/DIAS_Talk.png" alt="Header graphic">
+    </div>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#graphics">Research Visualizations</a>
+        <a href="#contact">Contact</a>
+        <a href="CV_Lange.pdf" target="_blank">CV</a>
+        <a href="Resume_Lange.pdf" target="_blank">Résumé</a>
+    </nav>
+</header>
+
+<div id="about" class="section">
+    <h2>About Me</h2>
+    <p>Welcome! I'm an astrophysicist and data scientist focused on high-energy astrophysics.</p>
+
+    <ul style="list-style:none;padding-left:0;">
+        <li style="margin:8px;padding:8px;border-left:3px solid #00aaff;">
+            <a href="https://iopscience.iop.org/article/10.3847/1538-4357/adda32" target="_blank">
+            Orbital Phase-resolved Analysis of 4FGL J1405.1-6119
+            </a>
+        </li>
+        <li style="margin:8px;padding:8px;border-left:3px solid #00aaff;">
+            <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ade713" target="_blank">
+            The Vela Pulsar and Vela-X
+            </a>
+        </li>
+        <li style="margin:8px;padding:8px;border-left:3px solid #00aaff;">
+            <a href="https://arxiv.org/abs/2511.04810" target="_blank">
+            FermiPhased Tool for LAT Analysis
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="center-image">
+    <img src="Images/middle_image.png" alt="Middle graphic">
+</div>
+
+<div id="projects" class="section">
+    <h2>Projects</h2>
+    <ul>
+        <li>Fermi-phased analysis pipeline</li>
+        <li>Multi-wavelength astrophysics scripts</li>
+    </ul>
+</div>
+
+<!-- ⭐ RESEARCH VISUALIZATION WITH ANALYZE BUTTON -->
+<div id="graphics" class="section">
+    <h2>Research Visualizations</h2>
+    <p>Click “Analyze” to simulate phase-resolved data processing.</p>
+
+    <div class="analyze-box">
+        <img id="analysisImage" src="Images/Animation_fig_1.png" alt="Time Series Data">
+
+        <button id="analyzeButton">Analyze</button>
+
+        <div id="loadingBarContainer" style="width:60%;margin:auto;display:none;">
+            <div id="loadingBar"></div>
+        </div>
+    </div>
+</div>
+
+<div id="contact" class="section">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:alexlange@gwu.edu">alexlange@gwu.edu</a><br>
+       GitHub: <a href="https://github.com/aplangrangian">@aplangrangian</a></p>
+</div>
+
+<footer>© 2025 Alexander Lange</footer>
+
 <script>
-/* ============================================
-   CLOUD CHAMBER BACKGROUND
-============================================ */
+/* CLOUD CHAMBER */
 const canvas = document.getElementById("cloudChamber");
 const ctx = canvas.getContext("2d");
-
 function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
 }
 resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
+addEventListener("resize", resizeCanvas);
 
 let particles = [];
-
-window.addEventListener("mousemove", (e) => {
+addEventListener("mousemove", e => {
     for (let i = 0; i < 1; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = 0.5 + Math.random() * 1.5;
+        const angle = Math.random()*Math.PI*2;
+        const speed = 0.5 + Math.random()*1.5;
         particles.push({
-            x: e.clientX,
-            y: e.clientY,
-            vx: Math.cos(angle) * speed,
-            vy: Math.sin(angle) * speed,
-            life: 1,
-            width: 1 + Math.random() * 1.5,
-            length: 20 + Math.random() * 50
+            x: e.clientX, y: e.clientY,
+            vx: Math.cos(angle)*speed,
+            vy: Math.sin(angle)*speed,
+            life: 1, width: 1+Math.random()*1.5,
+            length: 20+Math.random()*50
         });
     }
 });
 
-function animateCloudChamber() {
-    requestAnimationFrame(animateCloudChamber);
+function animate() {
+    requestAnimationFrame(animate);
+    ctx.fillStyle="rgba(5,7,19,0.22)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
 
-    ctx.fillStyle = "rgba(5, 7, 19, 0.22)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    particles = particles.filter(p => p.life > 0);
-
+    particles = particles.filter(p=>p.life>0);
     particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.life -= 0.02;
-
+        p.x+=p.vx; p.y+=p.vy; p.life-=0.02;
         ctx.save();
-        ctx.globalAlpha = p.life * 0.6;
-
-        const g = ctx.createLinearGradient(
-            p.x, p.y,
-            p.x - p.vx * p.length,
-            p.y - p.vy * p.length
-        );
-        g.addColorStop(0, "rgba(160,220,255,1)");
-        g.addColorStop(1, "rgba(0,80,180,0)");
-
-        ctx.strokeStyle = g;
-        ctx.lineWidth = p.width;
-
+        ctx.globalAlpha=p.life*0.6;
+        let g=ctx.createLinearGradient(p.x,p.y,p.x-p.vx*p.length,p.y-p.vy*p.length);
+        g.addColorStop(0,"rgba(160,220,255,1)");
+        g.addColorStop(1,"rgba(0,80,180,0)");
+        ctx.strokeStyle=g;
+        ctx.lineWidth=p.width;
         ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(
-            p.x - p.vx * p.length,
-            p.y - p.vy * p.length
-        );
+        ctx.moveTo(p.x,p.y);
+        ctx.lineTo(p.x-p.vx*p.length,p.y-p.vy*p.length);
         ctx.stroke();
-
         ctx.restore();
     });
 }
-animateCloudChamber();
+animate();
 
-
-
-/* ============================================
-   ANALYZE BUTTON — MULTI-STAGE + RESET
-============================================ */
-
+/* --- ANALYZE BUTTON LOGIC --- */
 const analysisImage = document.getElementById("analysisImage");
 const analyzeBtn = document.getElementById("analyzeButton");
-
-// Create RESET button
-const resetBtn = document.createElement("button");
-resetBtn.innerText = "Reset";
-resetBtn.id = "resetButton";
-resetBtn.style.display = "none";
-resetBtn.style.marginTop = "1rem";
-resetBtn.style.padding = "10px 18px";
-resetBtn.style.fontSize = "1.1rem";
-resetBtn.style.background = "#ff3366";
-resetBtn.style.color = "black";
-resetBtn.style.border = "none";
-resetBtn.style.borderRadius = "8px";
-resetBtn.style.cursor = "pointer";
-resetBtn.style.fontWeight = "bold";
-resetBtn.style.transition = "0.2s";
-
-analyzeBtn.insertAdjacentElement("afterend", resetBtn);
-
-// Loading bar
 const loadingContainer = document.getElementById("loadingBarContainer");
 const loadingBar = document.getElementById("loadingBar");
 
-// Image sequence
-const frames = [
-    "Images/Animation_fig_1.png",
-    "Images/Animation_fig_2.png",
-    "Images/Animation_fig_3.png"
-];
-
-let stage = 0;  // 0 → 1 → 2
-
-function runAnalysisStep() {
-    if (stage >= 2) return; // stop at last frame
-
+analyzeBtn.addEventListener("click", () => {
     analyzeBtn.style.display = "none";
     loadingContainer.style.display = "block";
-    loadingBar.style.width = "0%";
 
-    // animate the loading bar
-    setTimeout(() => {
-        loadingBar.style.width = "100%";
-    }, 50);
+    // Trigger loading animation
+    setTimeout(() => loadingBar.style.width = "100%", 50);
 
-    // after 3 seconds → change image
+    // After 3 seconds → swap image
     setTimeout(() => {
         analysisImage.style.opacity = 0;
 
         setTimeout(() => {
-            stage += 1;
-            analysisImage.src = frames[stage];
+            analysisImage.src = "Images/Animation_fig_2.png";  // ⭐ Replace with second image
             analysisImage.style.opacity = 1;
+        }, 700);
 
-            loadingContainer.style.display = "none";
-
-            // show analyze button if not done
-            if (stage < 2) {
-                analyzeBtn.style.display = "inline-block";
-            } else {
-                resetBtn.style.display = "inline-block";
-            }
-
-        }, 500);
+        loadingContainer.style.display = "none";
     }, 3000);
-}
 
+    setTimeout(() => loadingBar.style.width = "100%", 50);
 
-analyzeBtn.addEventListener("click", runAnalysisStep);
-
-
-// RESET LOGIC
-resetBtn.addEventListener("click", () => {
-    stage = 0;
-    analysisImage.style.opacity = 0;
-
+    // After 3 seconds → swap image
     setTimeout(() => {
-        analysisImage.src = frames[0];
-        analysisImage.style.opacity = 1;
-    }, 300);
+        analysisImage.style.opacity = 0;
 
-    analyzeBtn.style.display = "inline-block";
-    resetBtn.style.display = "none";
-});
+        setTimeout(() => {
+            analysisImage.src = "Images/Animation_fig_3.png";  // ⭐ Replace with second image
+            analysisImage.style.opacity = 1;
+        }, 700);
 
-
-/* ============================================
-   IMAGE FADE-IN ON SCROLL (for static ones)
-============================================ */
-const graphic = document.querySelector(".graphic-container");
-window.addEventListener("scroll", () => {
-    const rect = graphic.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.8)
-        graphic.style.opacity = 1;
+        loadingContainer.style.display = "none";
+    }, 3000);
 });
 </script>
+
+</body>
+</html>
