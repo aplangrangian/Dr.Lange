@@ -86,39 +86,49 @@
             text-align: center;
             margin-top: 2rem;
         }
-
+        
+        .image-stack {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
         #analysisImage {
             max-width: 90%;
-            max-height: 90%;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0,150,255,0.3);
             transition: opacity 1s;
         }
-
+        
         #analyzeButton {
-            margin-top: 1rem;
-            padding: 10px 18px;
-            font-size: 1.1rem;
+            padding: 12px 26px;
+            font-size: 1.3rem;
             background: #00aaff;
             color: black;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: bold;
-            transition: 0.2s;
+            display: inline-block;
+            margin-top: 1rem;
         }
+        
         #analyzeButton:hover {
             background: #33cfff;
         }
-
+        
+        #loadingBarContainer {
+            width: 50%;
+            margin: 20px auto 0;
+            display: none;
+        }
+        
         #loadingBar {
             width: 0%;
             height: 12px;
             background: #00aaff;
-            margin: 12px auto;
             border-radius: 10px;
             transition: width 3s linear;
-            box-shadow: 0 0 10px rgba(0,150,255,0.6);
         }
     </style>
 </head>
