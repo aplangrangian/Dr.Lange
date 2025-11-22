@@ -195,15 +195,37 @@
     <h2>Research Visualizations</h2>
     <p>Click “Analyze” to simulate phase-resolved data processing.</p>
 
-    <div class="analyze-box">
-        <img id="analysisImage" src="Images/Animation_fig_1.png" alt="Time Series Data">
+<div class="analyze-box">
+    <img id="analysisImage"
+         src="Images/Animation_fig_1.png"
+         alt="Analysis Frame"
+         style="max-width:90%;max-height:90%;border-radius:10px;
+                box-shadow:0 0 20px rgba(0,150,255,0.3);transition:opacity 1s;" />
 
-        <button id="analyzeButton">Analyze</button>
-
-        <div id="loadingBarContainer" style="width:60%;margin:auto;display:none;">
-            <div id="loadingBar"></div>
+    <div id="loadingBarContainer" style="width:60%;margin:12px auto;display:none;">
+        <div id="loadingBar" style="
+            width:0%;height:12px;background:#00aaff;
+            border-radius:10px;transition:width 3s linear;
+            box-shadow:0 0 10px rgba(0,150,255,0.6);">
         </div>
     </div>
+
+    <!-- Analyze button UNDER the image -->
+    <button id="analyzeButton"
+            style="margin-top:15px;padding:10px 18px;font-size:1.1rem;
+                   background:#00aaff;color:black;border:none;border-radius:8px;
+                   cursor:pointer;font-weight:bold;transition:0.2s;">
+        Analyze
+    </button>
+
+    <button id="resetButton"
+            style="margin-top:15px;padding:10px 18px;font-size:1.1rem;
+                   background:#ffaa00;color:black;border:none;border-radius:8px;
+                   cursor:pointer;font-weight:bold;display:none;transition:0.2s;">
+        Reset
+    </button>
+</div>
+
 </div>
 
 <div id="contact" class="section">
