@@ -189,7 +189,7 @@
 </div>
 
 <div class="center-image">
-    <img src="Images/middle_image.png" alt="Middle graphic">
+    <img src="Images/DIAS_Talk.png" alt="Middle graphic">
 </div>
 
 <div id="projects" class="section">
@@ -211,7 +211,7 @@
         comprised of a massive stellar companion of roughly 35 solar masses
         (35 times "larger" or more massive than our solar's system's
         star) and likely a neutron star (NS). LS 5039 has a relatively short orbital period of ~3.9 days, and with any luck...
-        ... we should be able to see the orbital modulation in the gamma-rays!</p>
+        we should be able to see the orbital modulation in the gamma-rays!</p>
     <p>Click “Analyze” to simulate the Fourier analysis.</p>
 
 <div class="analyze-box">
@@ -220,7 +220,6 @@
          alt="Analysis Frame"
          style="max-width:90%;max-height:90%;border-radius:10px;
                 box-shadow:0 0 20px rgba(0,150,255,0.3);transition:opacity 1s;" />
-
     <div id="loadingBarContainer" style="width:60%;margin:12px auto;display:none;">
         <div id="loadingBar" style="
             width:0%;height:12px;background:#00aaff;
@@ -312,14 +311,23 @@ const frames = [
     "Images/Animation_fig_1.png",  // original
     "Images/Animation_fig_2.png",  // after analysis 1
     "Images/Animation_fig_3.png",  // after analysis 2
+    "Images/Animation_fig_4.png",  // after analysis 2
 ];
-
+const descriptions = [
+    "Here we have the simple lightcurve of LS 5039. Events are binned into daily fluxes using FermiTools. The dataset spans roughly 17 years.",
+    "Next, we analyze the temporal variability of the gamma-rays using a dynamic Lomb–Scargle periodogram to identify evolving periodic signals. This process is done by breaking down the time-series data and fitting it with a ~nearly~ infinite series of sine waves. The constructive and destructive interference superimpose to recover the intial time-series data.",
+    "Finally, a simple plot of the relative strengths (or weights) for each frequency show where (or more accurately how frequent) the signal is observed. There are a handful of stipulations that should be considered, for instance, data quality, extremely small error bars, gamma-ray flares from the sun and gamma-ray contamination from other sources (gamma-ray telescopes have poor resolution compared to optical telescopes). If the appropriate care is taken, we should find a nice significant period at 3.90608 days... corresponding to the orbital period of the binary.,"
+    "Taking this one step further, we can then fold all our data on this orbital period to see how the gamma-ray intensity changes with orbital phase (an apt analogy would be to compare the brightness of the sun on the Earth during the summer months (phase of ~.4 to ~0.75; corresponding to May, June, July and August) and the winter months (December, January, February; again orbital phase of ~0.93 to ~0.25). When we fold the data on any period, we can create our orbital phase-resolved lightcurve..."
+];
 let currentStep = 0;
 
 const analysisImage = document.getElementById("analysisImage");
 const analyzeButton = document.getElementById("analyzeButton");
 const loadingBarContainer = document.getElementById("loadingBarContainer");
 const loadingBar = document.getElementById("loadingBar");
+const analysisText = document.getElementById("analysisText"); 
+analysisText.textContent = descriptions[0];
+
 
 // Run a single analysis step
 function runAnalysis() {
@@ -340,6 +348,8 @@ function runAnalysis() {
             // Update image
             analysisImage.src = frames[currentStep];
             analysisImage.style.opacity = 1;
+            
+            analysisText.textContent = descriptions[currentStep];
 
             // Hide loading bar
             loadingBarContainer.style.display = "none";
