@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alexander Lange</title>
+
     <style>
         body {
             margin: 0;
@@ -25,7 +26,7 @@
         header {
             text-align: center;
             padding: 3rem 1rem;
-            background: rgba(17, 20, 38, 0.95);
+            background: rgba(17,20,38,0.95);
             backdrop-filter: blur(4px);
             position: relative;
             z-index: 10;
@@ -40,31 +41,16 @@
             text-decoration: none;
             font-size: 1.1rem;
         }
-        nav a:hover { text-decoration: underline; }
 
         .section {
             max-width: 900px;
             margin: 3rem auto;
             padding: 1rem 2rem;
-            background: rgba(21, 25, 46, 0.9);
+            background: rgba(21,25,46,0.9);
             border-radius: 12px;
             box-shadow: 0 0 30px rgba(0,0,0,0.4);
             position: relative;
             z-index: 10;
-        }
-
-        .center-image {
-            z-index: 20;
-            justify-content: center;
-            margin: 2rem 0;
-            position: relative;
-        }
-        .center-image img {
-            width: 360px;
-            height: 360px;
-            border-radius: 24px;
-            box-shadow: 0 0 20px rgba(0,150,255,0.3);
-            z-index: 20;
         }
 
         h2 {
@@ -72,93 +58,32 @@
             padding-bottom: 0.5rem;
         }
 
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #999;
-            background: rgba(10,12,25,0.95);
-            z-index: 10;
-            position: relative;
-        }
-
-        a { color: #66ccff; }
-
-        /* --- ANALYZE FEATURE --- */
-        .analyze-box {
-            text-align: center;
-            margin-top: 2rem;
-        }
-        
-        .image-stack {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-        
-        #analysisImage {
-            max-width: 90%;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,150,255,0.3);
-            transition: opacity 1s;
-        }
-        /* Two-column layout for sections with images */
+        /* SIDE-BY-SIDE LAYOUT */
         .side-by-side {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             gap: 2rem;
+            align-items: center;
         }
-        
-        .side-text {
-            flex: 1;
-        }
-        
+
+        .side-text { flex: 1; }
+
         .side-image {
             flex: 0 0 300px;
             display: flex;
             justify-content: center;
         }
-        
+
         .side-image img {
             width: 100%;
             height: auto;
             border-radius: 18px;
             box-shadow: 0 0 20px rgba(0,150,255,0.3);
         }
-        
-
-        #analyzeButton {
-            padding: 12px 26px;
-            font-size: 1.3rem;
-            background: #00aaff;
-            color: black;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 1rem;
-        }
-        
-        #analyzeButton:hover {
-            background: #33cfff;
-        }
-        
-        #loadingBarContainer {
-            width: 50%;
-            margin: 20px auto 0;
-            display: none;
-        }
-        
-        #loadingBar {
-            width: 0%;
-            height: 12px;
-            background: #00aaff;
-            border-radius: 10px;
-            transition: width 3s linear;
-        }
     </style>
 </head>
+
+
 <body>
 
 <canvas id="cloudChamber"></canvas>
@@ -169,38 +94,37 @@
     <nav>
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
-        <a href="#graphics">Research and Skill Visualizations</a>
+        <a href="#graphics">Research</a>
         <a href="#contact">Contact</a>
         <a href="CV_Lange.pdf" target="_blank">CV</a>
         <a href="Resume_Lange.pdf" target="_blank">Résumé</a>
     </nav>
 </header>
 
-<div class="side-by-side analyze-box">    
-    <div class="center-image">
-        <img src="Images/Headshot.JPG" alt="Header graphic">
-    </div>
+<!-- ✅ THIS WAS THE PROBLEM: we close this container properly -->
+<div class="center-image" style="text-align:center; margin:2rem;">
+    <img src="Images/Headshot.JPG" alt="Headshot" style="
+         width:360px;height:360px;border-radius:24px;
+         box-shadow:0 0 20px rgba(0,150,255,0.3);">
+</div>
+<!-- ❗ THIS </div> WAS MISSING BEFORE -->
 
-    
-<!-- ABOUT SECTION (SIDE-BY-SIDE LAYOUT) -->
+
+
+<!-- ---------------------- -->
+<!--        ABOUT ME        -->
+<!-- ---------------------- -->
+
 <div id="about" class="section side-by-side">
 
-    <!-- LEFT COLUMN: TEXT -->
     <div class="side-text">
         <h2>About Me</h2>
 
-        <p>Welcome! I'm an astrophysicist and data scientist focused on high-energy astrophysics. 
-        I've been at the George Washington University since 2019 under the advisement of 
-        Professor Oleg Kargaltsev and Dr. Robin H.D. Corbet (UMBC). 
-        I plan to defend my Ph.D. in early Spring 2026 on my work on High-Energy Observations 
-        of Compact Objects and their Interactions with their Environments.</p>
+        <p>Welcome! I'm an astrophysicist and data scientist focused on high-energy astrophysics...</p>
 
-        <p>During my doctoral program, I have been studying the exotic neutron stars and black holes 
-        to test our theories of physics in extreme environments. When 
-        these "compact objects" are observed in binaries with massive stars (many time more massive
-        than our own), we can disentangle the physics generating the most energetic light in the universe.</p>
+        <p>During my doctoral program...</p>
 
-        <p>Check out my first-author publications here:</p>
+        <p>Check out my first-author publications:</p>
 
         <ul style="list-style:none;padding-left:0;">
             <li style="margin:8px;padding:8px;border-left:3px solid #00aaff;">
@@ -208,11 +132,13 @@
                     Orbital Phase-resolved Analysis of 4FGL J1405.1-6119
                 </a>
             </li>
+
             <li style="margin:8px;padding:8px;border-left:3px solid #00aaff;">
                 <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ade713" target="_blank">
                     The Vela Pulsar and Vela-X
                 </a>
             </li>
+
             <li style="margin:8px;padding:8px;border-left:3px solid #00aaff;">
                 <a href="https://arxiv.org/abs/2511.04810" target="_blank">
                     FermiPhased Tool for LAT Analysis
@@ -220,12 +146,11 @@
             </li>
         </ul>
 
-        <p>Or check out my ORCID profile which has an updated list of all publications:
-            <a href="https://orcid.org/0000-0003-3540-2870" target="_blank">ORCID Profile</a>
+        <p>My full publication list is available on my
+            <a href="https://orcid.org/0000-0003-3540-2870" target="_blank">ORCID Profile</a>.
         </p>
     </div>
 
-    <!-- RIGHT COLUMN: IMAGE -->
     <div class="side-image">
         <img src="Images/Headshot.JPG" alt="Alexander Lange">
     </div>
@@ -233,21 +158,23 @@
 </div>
 
 
-<br>
 
-<div class="center-image">
-        <img src="Images/Headshot.JPG" alt="Header graphic">
-</div>
 
-<div id="Current Projects" class="section">
+<!-- ---------------------- -->
+<!--       PROJECTS         -->
+<!-- ---------------------- -->
+
+<div id="projects" class="section">
     <h2>Projects</h2>
     <ul>
         <li>FermiPhased pipeline updates</li>
-        <p>GUI script used to reduce and generate high-quality phase-resolved analysis results</p>
-        <li>Crab Pulsar and Vela Pulsar</li>
-        <p> Peak Separation Analysis -- Identifying if the gamma-ray emission sites are changing irrespective of Radio emission sites</p>
+        <p>GUI script used to perform high-quality phase-resolved LAT analysis.</p>
+
+        <li>Crab Pulsar & Vela Pulsar</li>
+        <p>Peak separation and pulse profile evolution analysis.</p>
     </ul>
 </div>
+
 
 <!-- ⭐ RESEARCH VISUALIZATION WITH ANALYZE BUTTON -->
 <div id="graphics" class="section">
