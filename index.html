@@ -102,27 +102,24 @@
 </header>
 
 <!-- ✅ THIS WAS THE PROBLEM: we close this container properly -->
-<div class="center-image" style="text-align:center; margin:2rem;">
+<!-- <div class="center-image" style="text-align:center; margin:2rem;">
     <img src="Images/Headshot.JPG" alt="Headshot" style="
          width:360px;height:360px;border-radius:24px;
          box-shadow:0 0 20px rgba(0,150,255,0.3);">
-</div>
+</div> -->
 <!-- ❗ THIS </div> WAS MISSING BEFORE -->
-
-
-
-<!-- ---------------------- -->
-<!--        ABOUT ME        -->
-<!-- ---------------------- -->
 
 <div id="about" class="section side-by-side">
 
     <div class="side-text">
         <h2>About Me</h2>
 
-        <p>Welcome! I'm an astrophysicist and data scientist focused on high-energy astrophysics...</p>
+        <p>Welcome! I'm an astrophysicist and data scientist focused on high-energy astrophysics. I've been at the George Washington University since 2019 under the advisement of Professor Oleg Kargaltsev and Dr. Robin H.D. Corbet (UMBC). I plan to defend my Ph.D. in early Spring 2026 on my work on High-Energy Observations of Compact Objects and their Interactions with their Environments.</p>
 
-        <p>During my doctoral program...</p>
+        <p>During my doctoral program, I have been studying the exotic neutron stars and black holes 
+        to test our theories of physics in extreme environments. When 
+        these "compact objects" are observed in binaries with massive stars (many time more massive
+        that our own), we can disentangle the physics generating the most energetic light in the universe.</p>
 
         <p>Check out my first-author publications:</p>
 
@@ -158,12 +155,6 @@
 </div>
 
 
-
-
-<!-- ---------------------- -->
-<!--       PROJECTS         -->
-<!-- ---------------------- -->
-
 <div id="projects" class="section">
     <h2>Projects</h2>
     <ul>
@@ -171,7 +162,7 @@
         <p>GUI script used to perform high-quality phase-resolved LAT analysis.</p>
 
         <li>Crab Pulsar & Vela Pulsar</li>
-        <p>Peak separation and pulse profile evolution analysis.</p>
+        <p>Peak separation analysis -- Identifying if the gamma-ray emission sites are changing irrespective of Radio emission sites.</p>
     </ul>
 </div>
 
@@ -252,13 +243,13 @@ let particles = [];
 addEventListener("mousemove", e => {
     for (let i = 0; i < 2; i++) {
         const angle = Math.random()*Math.PI*2;
-        const speed = 0.5 + Math.random()*5.5;
+        const speed = 0.5 + Math.random()*Math.random()*55;
         particles.push({
             x: e.clientX, y: e.clientY,
             vx: Math.cos(angle)*speed,
             vy: Math.sin(angle)*speed,
             life: 1, width: 1+Math.random()*1.5,
-            length: 20+Math.random()*500
+            length: 20+Math.random()*Math.random()*500
         });
     }
 });
