@@ -278,11 +278,12 @@ function animate() {
         );
         
         // Bright electric blue → glossy aqua → soft fade
-        g.addColorStop(0,   "rgba(120,180,255,1)");   // bright electric blue core
-        g.addColorStop(0.3, "rgba(180,240,255,0.9)"); // glossy aqua “shine”
-        g.addColorStop(1,   "rgba(0,120,255,0)");     // fade to transparent blue
+        g.addColorStop(0, "rgba(90,150,255,0.9)");   // bright concentrated blue core
+        g.addColorStop(0.4, "rgba(40,90,200,0.6)");  // shiny transition band
+        g.addColorStop(1, "rgba(10,30,80,0)");       // deep dark blue fade-out
         ctx.strokeStyle=g;
         ctx.lineWidth=p.width;
+        ctx.globalAlpha = p.life * 0.8;
         ctx.beginPath();
         ctx.moveTo(p.x,p.y);
         ctx.lineTo(p.x-p.vx*p.length,p.y-p.vy*p.length);
