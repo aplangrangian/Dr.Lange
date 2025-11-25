@@ -271,9 +271,16 @@ function animate() {
         p.x+=p.vx; p.y+=p.vy; p.life-=0.02;
         ctx.save();
         ctx.globalAlpha=p.life*0.6;
-        let g=ctx.createLinearGradient(p.x,p.y,p.x-p.vx*p.length,p.y-p.vy*p.length);
-        g.addColorStop(0, "rgba(200, 50, 120, 1)");   // dark pink (opaque)
-        g.addColorStop(1, "rgba(90, 0, 120, 0)");     // dark purple (fade out)
+        let g = ctx.createLinearGradient(
+            p.x, p.y,
+            p.x - p.vx * p.length,
+            p.y - p.vy * p.length
+        );
+        
+        // Bright electric blue → glossy aqua → soft fade
+        g.addColorStop(0,   "rgba(120,180,255,1)");   // bright electric blue core
+        g.addColorStop(0.3, "rgba(180,240,255,0.9)"); // glossy aqua “shine”
+        g.addColorStop(1,   "rgba(0,120,255,0)");     // fade to transparent blue
         ctx.strokeStyle=g;
         ctx.lineWidth=p.width;
         ctx.beginPath();
