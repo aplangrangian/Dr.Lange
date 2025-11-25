@@ -41,7 +41,14 @@
             text-decoration: none;
             font-size: 1.1rem;
         }
-
+        .analyze-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;      /* horizontally centers EVERYTHING */
+            justify-content: center;  /* vertically centers if it grows */
+            text-align: center;       /* centers the text paragraphs */
+            width: 100%;
+        }
         .section {
             max-width: 900px;
             margin: 3rem auto;
@@ -265,8 +272,8 @@ function animate() {
         ctx.save();
         ctx.globalAlpha=p.life*0.6;
         let g=ctx.createLinearGradient(p.x,p.y,p.x-p.vx*p.length,p.y-p.vy*p.length);
-        g.addColorStop(0,"rgba(160,220,255,1)");
-        g.addColorStop(1,"rgba(0,80,180,0)");
+        g.addColorStop(0, "rgba(200, 50, 120, 1)");   // dark pink (opaque)
+        g.addColorStop(1, "rgba(90, 0, 120, 0)");     // dark purple (fade out)
         ctx.strokeStyle=g;
         ctx.lineWidth=p.width;
         ctx.beginPath();
