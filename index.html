@@ -36,10 +36,14 @@
 
         nav { margin-top: 1rem; }
         nav a {
-            color: #66ccff;
+            color: #7fd4ff;
             margin: 0 1rem;
             text-decoration: none;
             font-size: 1.1rem;
+        }
+        a:hover {
+            color: #b5e9ff;
+            text-decoration: underline;
         }
         .analyze-box {
             display: flex;
@@ -100,7 +104,7 @@
 
     <nav>
         <a href="#about">About</a>
-        <a href="#projects">Projects</a>
+        <a href="#projects">Current Projects</a>
         <a href="#graphics">Research</a>
         <a href="#contact">Contact</a>
         <a href="CV_Lange.pdf" target="_blank">CV</a>
@@ -108,13 +112,6 @@
     </nav>
 </header>
 
-<!-- ✅ THIS WAS THE PROBLEM: we close this container properly -->
-<!-- <div class="center-image" style="text-align:center; margin:2rem;">
-    <img src="Images/Headshot.JPG" alt="Headshot" style="
-         width:360px;height:360px;border-radius:24px;
-         box-shadow:0 0 20px rgba(0,150,255,0.3);">
-</div> -->
-<!-- ❗ THIS </div> WAS MISSING BEFORE -->
 
 <div id="about" class="section side-by-side">
 
@@ -169,7 +166,7 @@
 
 
 <div id="projects" class="section">
-    <h2>Projects</h2>
+    <h2>Current Projects</h2>
     <ul>
         <li>FermiPhased pipeline updates</li>
         <p>GUI script used to perform high-quality phase-resolved LAT analysis.</p>
@@ -256,12 +253,12 @@ let particles = [];
 addEventListener("mousemove", e => {
     for (let i = 0; i < 1; i++) {
         const angle = Math.random()*Math.PI*2;
-        const speed = 0.5 + Math.random()*Math.random()*55;
+        const speed = 0.5 + Math.random()*Math.random()*500;
         particles.push({
             x: e.clientX, y: e.clientY,
             vx: Math.cos(angle)*speed,
             vy: Math.sin(angle)*speed,
-            life: 1, width: 1+Math.random()*1.5,
+            life: 1, width: 1+Math.random()*Math.random()*15,
             length: 20+Math.random()*Math.random()*500
         });
     }
@@ -284,9 +281,9 @@ function animate() {
         );
         
         // Bright electric blue → glossy aqua → soft fade
-        g.addColorStop(0, "rgba(90,150,255,0.9)");   // bright concentrated blue core
-        g.addColorStop(0.4, "rgba(40,90,200,0.6)");  // shiny transition band
-        g.addColorStop(1, "rgba(10,30,80,0)");       // deep dark blue fade-out
+        g.addColorStop(0, "rgba(70,130,240,0.9)");
+        g.addColorStop(0.4, "rgba(30,70,160,0.5)");
+        g.addColorStop(1, "rgba(5,15,40,0)");   // deep dark blue fade-out
         ctx.strokeStyle=g;
         ctx.lineWidth=p.width;
         ctx.globalAlpha = p.life * 0.8;
