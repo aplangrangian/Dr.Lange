@@ -122,7 +122,9 @@
 function checkPassword() {
     const password = prompt("Enter password:");
 
-    if (password === "test") {
+    const validPasswords = ["Mira", "Shaggy", "Radley","Alain"];
+
+    if (validPasswords.includes(password)) {
         window.open("Eru's_Loico_Renaissance_v2.pdf", "_blank");
     } else if (password !== null) {
         alert("Incorrect password.");
