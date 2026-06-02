@@ -120,13 +120,24 @@
 </header>
 
 <script>
-function checkPassword() {
+function password_for_player_handbook() {
     const password = prompt("Enter password:");
 
     const validPasswords = ["Mira", "Shaggy", "Radley","Alain","Dale","Brennan","Hank"];
 
     if (validPasswords.includes(password)) {
         window.open("Eru's_Loico_Renaissance_v3.pdf", "_blank");
+    } else if (password !== null) {
+        alert("Incorrect password.");
+    }
+}
+function password_for_notes() {
+    const password = prompt("Enter password:");
+
+    const validPasswords = ["Mira", "Shaggy", "Radley","Alain","Dale","Brennan","Hank"];
+
+    if (validPasswords.includes(password)) {
+        window.open("notes.html", "_blank");
     } else if (password !== null) {
         alert("Incorrect password.");
     }
