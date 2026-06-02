@@ -86,11 +86,9 @@ textarea {
 
     <h1>Authorized Access</h1>
 
-    <p>Enter your username and password.</p>
+    <p>Enter your username</p>
 
     <input id="username" type="text" placeholder="Username">
-
-    <input id="password" type="password" placeholder="Password">
 
     <button onclick="login()">Login</button>
 
@@ -131,28 +129,22 @@ textarea {
 
 <script>
 
-const users = {
-    "Mira"    : "Mira",
-    "Shaggy"  : "Shaggy",
-    "Radley"  : "Radley",
-    "Alain"   : "Alain",
-    "Dale"    : "Dale",
-    "Brennan" : "Brennan",
-    "Hank"    : "Hank"
-};
+const authorizedUsers = [
+    "Mira",
+    "Shaggy",
+    "Radley",
+    "Alain",
+    "Dale",
+    "Brennan",
+    "Hank"
+];
 
 function login() {
 
     const username =
         document.getElementById("username").value.trim();
 
-    const password =
-        document.getElementById("password").value;
-
-    if (
-        users.hasOwnProperty(username) &&
-        users[username] === password
-    ) {
+    if (authorizedUsers.includes(username)) {
 
         document.getElementById("loginSection").style.display = "none";
 
@@ -163,11 +155,10 @@ function login() {
     } else {
 
         document.getElementById("error").innerText =
-            "Incorrect username or password.";
+            "Username not recognized.";
 
     }
 }
-
 </script>
 
 </body>
